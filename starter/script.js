@@ -33,13 +33,15 @@ btnRoll.addEventListener('click', function(){
      }else {
         activePlayer = activePlayer ===0 ? 1 : 0;   // else if the dice is '1', switch to the next player 
         currentScore = 0;
-        player0.classList.contains
+        player0.classList.toggle('player--active');   // The toggle method checks if the player class has the player active, if yes, it removes it but if no, it adds the player--active class to it
+        player1.classList.toggle('player--active');
      };
 });
 
 btnHold.addEventListener('click', function(){
+    // Add current score to current player
     activePlayer = activePlayer ===0 ? 1 : 0; // Switch to the next player
-    
+    player0.classList.toggle('player--active');  
 })
 
 

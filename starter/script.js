@@ -16,7 +16,7 @@ const player1 = document.querySelector('.player--1');
 
 let currentScore = 0;
 let activePlayer = 0;
-const scores = [0, 0];
+const scores = [0, 0];   // Here, the index0 holds the score for playre0 and Index1 holds the score for player 1
 let gameIsNotOver = true;
 
 // Starting conditions
@@ -62,4 +62,6 @@ btnHold.addEventListener('click', function(){
     }}
 });
 
+btnNew.addEventListener('click', function(){
 
+});

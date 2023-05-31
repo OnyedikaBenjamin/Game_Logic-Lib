@@ -13,15 +13,27 @@ const btnHold = document.querySelector('.btn--hold');
 
 const player0 = document.querySelector('.player--0');
 const player1 = document.querySelector('.player--1');
+let currentScore, activePlayer, gameIsNotOver, scores;
 
-let currentScore = 0;
-let activePlayer = 0;
-const scores = [0, 0];   // Here, the index0 holds the score for playre0 and Index1 holds the score for player 1
-let gameIsNotOver = true;
+const initialiseGame = () =>{
+    currentScore = 0;   
+    activePlayer = 0;         // The active player is initialised to be the player 0 at the begining
+    score0.textContent=0;        // TThe two players total score is 0 t the begining.
+    score1.textContent=0;   
 
-// Starting conditions
-score0.textContent=0; score1.textContent = 0;                    // TThe two players total score is 0 t the begining.
-diceModal.classList.add('hidden');                            // The dice should not be displayed until we roll it. Creating a hidden class in your css and setting the display property to none while adding it to the classList will hide that modal
+    scores = [0, 0];                     // Here, the index0 holds the score for playre0 and Index1 holds the score for player 1
+    diceModal.classList.add('hidden');       // The dice should not be displayed until we roll it. Creating a hidden class in your css and setting the display property to none while adding it to the classList will hide that modal
+    document.getElementById(`current--0`).textContent = 0;
+    document.getElementById(`current--1`).textContent = 0; 
+    gameIsNotOver = true;
+
+    player0.classList.remove('player--winner')
+    player1.classList.remove('player--winner')
+    player0.classList.add('player--active')
+    player1.classList.remove('player--active')
+}
+
+    initialiseGame();   // Here we call this function so that the game will be initialised before it starts.
 
 const switchPlayer = () => {
 activePlayer = activePlayer === 0 ? 1 : 0;   // else if the dice is '1', switch to the next player 
@@ -51,7 +63,7 @@ btnHold.addEventListener('click', function(){
     scores[activePlayer] += currentScore;               // Add current score to current player
     document.getElementById(`score-${activePlayer}`).textContent = scores[activePlayer]; // Display the updated score
 
-    if (scores[activePlayer] >=20){// Finish the game
+    if (scores[activePlayer] >=100)      {// Finish the game if the active player reaches 100 points.
         document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');   // Add the winner class
         document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');  // Remove the active player class
         gameIsNotOver = false;             // THEN END THE GAME
@@ -63,5 +75,6 @@ btnHold.addEventListener('click', function(){
 });
 
 btnNew.addEventListener('click', function(){
-
+  initialiseGame();
 });
+git

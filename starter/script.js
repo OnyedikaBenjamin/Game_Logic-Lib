@@ -17,6 +17,7 @@ const player1 = document.querySelector('.player--1');
 let currentScore = 0;
 let activePlayer = 0;
 const scores = [0, 0];
+let gameIsNotOver = true;
 
 // Starting conditions
 score0.textContent=0; score1.textContent = 0;                    // TThe two players total score is 0 t the begining.
@@ -31,6 +32,7 @@ player1.classList.toggle('player--active');
 
 
 btnRoll.addEventListener('click', function(){
+    if(gameIsNotOver){
     const diceResult = Math.trunc(Math.random() * 6) + 1;  // Generate a random numner
     diceModal.classList.remove('hidden');                // Remove the hidden modal class
     diceModal.src=`dice-${diceResult}.png`;             // Display Dice Result
@@ -41,19 +43,23 @@ btnRoll.addEventListener('click', function(){
      }else {
         switchPlayer();
      };
+    }
 });
 
 btnHold.addEventListener('click', function(){
+    if(gameIsNotOver){
     scores[activePlayer] += currentScore;               // Add current score to current player
     document.getElementById(`score-${activePlayer}`).textContent = scores[activePlayer]; // Display the updated score
 
     if (scores[activePlayer] >=20){// Finish the game
         document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');   // Add the winner class
-        document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');  // Remove the 
+        document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');  // Remove the active player class
+        gameIsNotOver = false;             // THEN END THE GAME
+        diceModal.classList.add('hidden');
     }
     else{
         switchPlayer();
-    }
+    }}
 });
 
 

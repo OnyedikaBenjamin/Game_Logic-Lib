@@ -1,9 +1,6 @@
 'use strict';
 
-//---------------Selecting elements----------------------------------
-// We can either use the querySelector or getElementById method
-
-const score0 = document.querySelector('#score-0'); // Since we are not working with classes, we put the # symbol in front of the id name or we use the get element by id function
+const score0 = document.querySelector('#score-0'); 
 const score1 = document.getElementById('score-1');
 const diceModal = document.querySelector('.dice');
 
